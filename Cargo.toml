@@ -8,3 +8,5 @@ edition = "2021"
 [dependencies]
 aoc-runner = "0.3"
 aoc-runner-derive = "0.3"
+md-5 = "0.10"
+hex = "0.4"
