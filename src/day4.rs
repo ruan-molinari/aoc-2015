@@ -4,13 +4,22 @@ use md5::{Md5, Digest};
 
 #[aoc(day4, part1)]
 fn part1(input: &str) -> u32 {
+    solver(input, "00000")
+}
+
+#[aoc(day4, part2)]
+fn part2(input: &str) -> u32 {
+    solver(input, "000000")
+}
+
+fn solver(input: &str, str_start: &str) -> u32 {
     let mut i = 0;
     loop {
         let mut hasher = Md5::new();
         hasher.update(input.to_string() + &i.to_string());
         let result = Into::<[u8; 16]>::into(hasher.finalize());
         let hexadec = result.encode_hex::<String>();
-        if hexadec.starts_with("00000") {
+        if hexadec.starts_with(str_start) {
             return i;
         }
         i += 1;
@@ -19,7 +28,7 @@ fn part1(input: &str) -> u32 {
 
 #[cfg(test)]
 mod tests {
-    use super::{part1};
+    use super::part1;
 
     #[test]
     fn part1_test() {
